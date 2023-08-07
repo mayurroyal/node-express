@@ -6,12 +6,6 @@ import mainRouter from './src/routes/router.js'
 
 dotnav.config()
 
-const app = express()
-
-app.use(mainRouter)
-
-const port = process.env.PORT || 3000
-
 if (cluster.isPrimary) {
     const cpuLength = os.cpus().length
 
@@ -23,6 +17,13 @@ if (cluster.isPrimary) {
         cluster.fork()
     })
 } else {
+
+    const app = express()
+
+    app.use(mainRouter)
+
+    const port = process.env.PORT || 3000
+
     app.listen(port, () => {
         console.log(`app listening on port ${port} and processId is ${process.pid}`)
     })
