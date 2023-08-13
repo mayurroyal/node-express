@@ -2,7 +2,7 @@ import express from 'express'
 import cluster from 'cluster'
 import os from 'os'
 import dotnav from 'dotenv'
-import mainRouter from './src/routes/router.js'
+import mainRouter from './src/routes/main.js'
 
 dotnav.config()
 
